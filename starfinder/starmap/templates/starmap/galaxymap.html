@@ -1,0 +1,40 @@
+{% extends 'starmap/base.html' %}
+{% load static %}
+{% block body %}
+{{ block.super }}
+<img id="background" width="1024" height="768" src="{% static "starmap/images/background/galaxy.jpg" %}" alt="bg" style="visibility:collapsed;">
+
+<div id="canvas_holder">
+    <canvas id="bg" width="1024" height="768" style="z-index:1">
+        Your browser does not support cnavas HTML5 tag
+    </canvas>
+    <canvas id="fg" width="1024" height="768" style="z-index:2">
+        Your browser does not support cnavas HTML5 tag
+    </canvas>
+
+</div>
+{% endblock %}
+
+{% block script %}
+{{ block.super }}
+<script>
+
+    var fg = document.getElementById("fg");
+    var fg_ctx = fg.getContext("2d");
+    bg_ctx.moveTo(0, 0);
+    bg_ctx.lineTo(800, 600);
+    bg_ctx.stroke();
+
+    fg_ctx.moveTo(800, 0);
+    fg_ctx.lineTo(0, 600);
+    fg_ctx.stroke();
+
+
+    window.onload = function() {
+        bg_img = document.getElementById("background");
+        var bg = document.getElementById("bg");
+        var bg_ctx = bg.getContext("2d");
+        ctx.drawImage(bg_img, 0, 0);
+    }
+</script>
+{% endblock %}
